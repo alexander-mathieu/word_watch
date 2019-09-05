@@ -82,7 +82,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(() => {
-  // have fun!
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+    url: 'https://wordwatch-api.herokuapp.com/api/v1/top_word',
+    success: function(data) {
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.word-count').append(`The best word is ${Object.keys(data.word)[0]}! That's right, ${Object.keys(data.word)[0]} has a total word count of ${Object.values(data.word)[0]}!`)
+    },
+    error: function(error) {
+      console.log(error)
+    }
+  })
+
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#breakdown-go-ahead-and-give-it-to-me').click(function() {
+    let submission = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#submission').val()
+
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+      method: 'POST',
+      url: 'https://wordwatch-api.herokuapp.com/api/v1/words',
+      contentType: 'application/json',
+      data: JSON.stringify({ word: { value: `${submission}` } } ),
+      success: function(response) {
+        alert(`You did it! You entered "${submission}"!`)
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#submission').val('')
+      },
+      error: function(error) {
+        console.log(error)
+      }
+    })
+  })
 })
 
 
