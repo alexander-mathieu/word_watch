@@ -10,4 +10,21 @@ $(document).ready(() => {
       console.log(error)
     }
   })
+
+  $('#breakdown-go-ahead-and-give-it-to-me').click(function() {
+    let submission = $('#submission').val();
+
+    $.ajax({
+      method: 'POST',
+      url: 'https://wordwatch-api.herokuapp.com/api/v1/words',
+      contentType: 'application/json',
+      data: JSON.stringify({ word: { value: `${submission}` } } ),
+      success: function(response) {
+        $('#submission').val('')
+      },
+      error: function(error) {
+        console.log(error)
+      }
+    })
+  })
 })
