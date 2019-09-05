@@ -12,7 +12,7 @@ $(document).ready(() => {
   })
 
   $('#breakdown-go-ahead-and-give-it-to-me').click(function() {
-    let submission = $('#submission').val();
+    let submission = $('#submission').val()
 
     $.ajax({
       method: 'POST',
@@ -20,6 +20,7 @@ $(document).ready(() => {
       contentType: 'application/json',
       data: JSON.stringify({ word: { value: `${submission}` } } ),
       success: function(response) {
+        alert(`You did it! You entered "${submission}"!`)
         $('#submission').val('')
       },
       error: function(error) {
